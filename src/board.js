@@ -15,8 +15,8 @@ export default class Board {
     #boardPosition;
     #panelPosition;
     #lineWidth;
-    //#dx;
-    //#dy;
+    #dx;
+    #dy;
 
     constructor(boardWidth, boardHeight, ctx) {
 
@@ -27,8 +27,8 @@ export default class Board {
         this.#panelWidth = this.#boardWidth;
         this.#panelHeight = this.#ctx.canvas.height - this.#boardHeight;
 
-        this.dx = this.#boardWidth / 3;
-        this.dy = this.#boardHeight / 3;
+        this.#dx = this.#boardWidth / 3;
+        this.#dy = this.#boardHeight / 3;
 
         this.#boardPosition = {
             x1: 0,
@@ -50,14 +50,14 @@ export default class Board {
 
         for (let i = 0; i < 3; i++) {
             for (let j = 0; j < 3; j++) {
-                this.felder.push(new Feld(j * this.dx, i * this.dy, (j + 1) * this.dx, (i + 1) * this.dy, this.#ctx));
+                this.felder.push(new Feld(j * this.#dx, i * this.#dy, (j + 1) * this.#dx, (i + 1) * this.#dy, this.#ctx));
             }
         }
 
         let spieler = SPIELER.SPIELER1;
         for (let k = 0; k < this.felder.length; k++) {
             this.felder[k].drawFigure(spieler);
-            spieler=this.toggleSpieler(spieler);
+            spieler = this.toggleSpieler(spieler);
         }
     }
 

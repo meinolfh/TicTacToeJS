@@ -1,4 +1,4 @@
-import Board, { SPIELER } from "./board.js";
+import { SPIELER } from "./board.js";
 
 export default class Feld {
 
@@ -15,15 +15,16 @@ export default class Feld {
     }
 
     drawFigure(spieler) {
+        var figure = "X";
+        
         this.ctx.font = "150px Arial";
         this.ctx.textAlign = "center";
 
         if (spieler === SPIELER.SPIELER1) {
             this.ctx.fillStyle = "blue";
-            var figure = "X";
         } else {
             this.ctx.fillStyle = "red";
-            var figure = "O";
+            figure = "O";
         }
 
         this.ctx.fillText(figure, this.calculateMiddle(this.x1, this.x2), 55 + this.calculateMiddle(this.y1, this.y2));
